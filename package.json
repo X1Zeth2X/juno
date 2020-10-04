@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon ./src/app.ts",
-    "prod": "tsc && node ./dist/app.js",
-    "build": "tsc -p ."
+    "build-ts": "tsc",
+    "postinstall": "yarn run build-ts"
   },
   "dependencies": {
     "@prisma/client": "^2.8.0",
