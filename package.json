@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon ./src/app.ts",
     "build-ts": "tsc",
-    "postinstall": "yarn run build-ts"
+    "postinstall": "prisma generate --schema ./src/db/prisma/schema.prisma && yarn run build-ts"
   },
   "dependencies": {
     "@prisma/client": "^2.8.0",
