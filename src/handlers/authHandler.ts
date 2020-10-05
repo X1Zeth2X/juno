@@ -24,6 +24,7 @@ type SignUpData = {
   email: string;
   password: string;
   fullName: string;
+  signUpKey?: string;
 }
 
 class AuthHandler {
@@ -87,6 +88,17 @@ class AuthHandler {
       !emailRegex.test(signUpData.email) ||
       !nameRegex.test(signUpData.fullName)
     ) return badRequestResponse(res, 'Invalid signup data.');
+
+    // Check if sign up Key exists in .env
+    if (process.env.SIGNUP_KEY) {
+      // Check if it matches.
+      if (process.env.SIGNUP_KEY !== signUpData.signUpKey) {
+        return res.status(403).json({
+          message: 'Sign up key is incorrect.',
+          error: 'signupkey_incorrect',
+        });
+      }
+    }
 
     try {
       // Create a new user
