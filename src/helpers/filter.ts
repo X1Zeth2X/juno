@@ -1,10 +1,9 @@
-import { User } from "@prisma/client";
-
 export type FilteredUser = {
   joinedAt: Date;
   email: string;
   fullName: string;
   bio: string | null;
+  posts?: Array<object>;
 }
 
 type FilteredPost  = {
@@ -16,12 +15,13 @@ type FilteredPost  = {
   author: FilteredUser | undefined;
 }
 
-export const filterUser = (user: User) => {
+export const filterUser = (user: any) => {
   const filteredUser: FilteredUser = {
     joinedAt: user.joinedAt,
     email: user.email,
     fullName: user.fullName,
     bio: user.bio,
+    posts: user.posts,
   };
 
   return filteredUser;
