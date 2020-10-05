@@ -139,13 +139,13 @@ class PostHandler {
         });
       }
 
-      logger.log('info', `User <Email: ${currentUser.email}> deleted post <ID: ${post.id}>.`);
+      logger.log('info', `User <Email: ${currentUser.email}> deleted Post <ID: ${post.id}>.`);
 
       // Delete post
-      this.postRepository.delete(postID);
+      const deleted = await this.postRepository.delete(postID);
       
       res.status(204).json({
-        message: 'Deleted post.'
+        message: `Deleted Post <${ deleted }>.`,
       });
       
     } catch (error) {

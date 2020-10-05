@@ -15,7 +15,7 @@ interface PostInterface {
   create(authorEmail: string, postData: CreatePostData): Promise<Post | undefined>;
   getById(id: number, includeAuthor?: boolean): Promise<Post | null>;
   update(id: number, updateData: UpdatePostData): Promise<Post | null>;
-  delete(id: number): void;
+  delete(id: number): Promise<Post>;
 }
 
 class PostRepository implements PostInterface {
