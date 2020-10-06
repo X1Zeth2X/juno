@@ -6,7 +6,8 @@ export type FilteredUser = {
   posts?: Array<object>;
 }
 
-type FilteredPost  = {
+export type FilteredPost  = {
+  id: number;
   createdAt: Date;
   updatedAt: Date;
   title: string;
@@ -29,6 +30,7 @@ export const filterUser = (user: any) => {
 
 export const filterPost = (post: any, excludeAuthor?: boolean) => {
   const filteredPost: FilteredPost = {
+    id: post.id,
     title: post.title,
     content: post.content,
     imageUrl: post.imageUrl,
