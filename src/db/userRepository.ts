@@ -39,7 +39,14 @@ class UserRepository implements UserInterface {
   getByEmail = (email: string, includePosts?: boolean) => this.prisma.user.findOne({
     where: { email },
     include: {
-      posts: includePosts,
+      posts: includePosts ? {
+        orderBy: {
+          createdAt: 'desc'
+        },
+        // Max 10 posts.
+        take: 10,
+      // If not specified, do not include posts.
+      } : false,
     },
   });
 

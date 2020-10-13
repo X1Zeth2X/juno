@@ -22,7 +22,9 @@ class UserHandler {
   getByEmail = async (req: Request, res: Response) => {
     // Get user email from params
     const userEmail = req.params.email;
-    const includePosts = req.query.includePosts === 'true' ? true : false;
+
+    // Post pagination
+    const includePosts = Boolean(req.query.includePosts);
 
     try {
       const user = await this.userRepository.getByEmail(userEmail, includePosts);
